@@ -9,9 +9,9 @@ This paper is all about the solution to the problem which is to collect differen
  So, the application divides those ideas into different users to make the evaluation process easier. Many existing applications can solve this problem but they are not secure, fast, and trustworthy as well. In this web application, we unbiased evaluation process. Besides, it is difficult to find these applications. This application is highly secured and can be accessed via the internet easily. 
 The result of our Application comprises of Admin panel and User Panel
 Our Web App comprises of two parts – 
-1. Website for collecting submission from the user through various form like Google form and Salesforce web to lead functionality.   
-2. ERP System for assigning different ideas to the evaluators and getting response from them in form of evaluation.
-Technology bucket:
+1. <a href="mietcsi.tech">Website</a> for collecting submission from the user through various form like Google form and Salesforce web to lead functionality.   
+2. <a href="udyat.pythonanywhere.com">ERP System</a> for assigning different ideas to the evaluators and getting response from them in form of evaluation.
+## Technology bucket:
 1.	Django is a python framework for developing secure web applications. Administration Interface is provided by Django itself. It is scalable and can handle traffic load easily. It has the best security which hides source code and it provides protection against XSS and CSRF attacks, SQL injections, etc. 
 2.	Hyper Text Markup Language, Cascade Style Sheets and JavaScript are used to design the front end of the application so that our evaluators and admin can interact with this system effectively and easily. HTML is a markup language supported by all browsers and can integrate with other languages. JavaScript gives the ability to create rich interfaces. It is used everywhere on the web and reduces the demand on the website server.
 3.	This also includes some advanced features and automation.
