@@ -1,0 +1,300 @@
+{% load static %}
+{% load mathfilters %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Review Task</title>
+	<!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" />
+     <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'assets/css/font-awesome.css' %}" rel="stylesheet" />
+        <!-- CUSTOM STYLES-->
+    <link href="{% static 'assets/css/custom.css' %}" rel="stylesheet" />
+     <!-- GOOGLE FONTS-->
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <style>
+    table, th, td {
+    border: 5px solid black;
+    padding:15px;
+    font-weight:bold;
+    text-align:center;
+    font-size:16px;
+    border-collapse:collapse;
+    }
+    tr:hover {
+  background-color:#f5f5f5;
+}
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  border: 1px solid #ddd;
+  float: center;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-size: 22px;
+
+}
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;
+  border-radius: 5px;
+}
+input[type=radio] {
+    border: 0px;
+    width: 25%;
+    height: 1.5em;}
+
+
+    </style>
+    <script>
+    var a1=0;
+       function myfunc(id){
+       var id1=id.toString();
+       document.getElementById(id1).innerHTML = a1+1;
+       a1=a1+1;
+       }
+
+       function value(x,teid,aid,rid,bid){
+       //var lst1=eval(lst);
+       //console.log("Sam");
+       //console.log(lst);
+
+       $(document).ready(function(){
+       $.ajax({
+        type:"POST",
+        url : '{% url 'get_review' %}',
+        data:{
+            'x': x,
+        },
+        success:
+        function(lst1){
+            var lst1=eval(lst1);
+        //console.log(lst1);
+        document.getElementById(teid).innerHTML = lst1[2];
+       if(lst1[1]==1){
+       document.getElementById(aid).checked=true;
+       document.getElementById(bid).style.backgroundColor = "lightgreen";
+       }
+       else if(lst1[1]==0){
+       document.getElementById(rid).checked=true;
+       document.getElementById(bid).style.backgroundColor = "red";
+       }
+        }
+        ,
+        headers:{"X-CSRFToken":"{{ csrf_token}}"},
+        });
+       });
+
+
+       }
+    </script>
+    <script>
+    function f1(s,id1){
+    var myDate = new Date();
+    var d = myDate.toLocaleTimeString('en-US', { hour12: true, hour: "numeric", minute: "numeric"});
+    let monthsList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Aug', 'Oct', 'Nov', 'Dec'];
+    let date = myDate.getDate();
+    let month = monthsList[myDate.getMonth()];
+    let year = myDate.getFullYear();
+    let today = `${month} ${date}, ${year}`;
+    document.getElementById(id1).innerHTML = s+`\n\nReviewed Date: `+today+`, `+d;
+    }
+        function Assign(Accept,Textarea,un,key,tid,bid,lid) {
+      $(document).ready(function(){
+      var k=key.toString();
+      var uname=un;
+      var Acc2=Accept.toString();
+      var d=document.getElementById(lid).href;
+      var tid1=tid.toString();
+      var Text=document.getElementById(Textarea);
+      var Acc1=document.getElementById(Acc2).checked;
+      if(Text.value==""){
+          alert("Please fill reason for acceptance or rejection");
+      }
+      else{
+       $.ajax({
+        type:"POST",
+        url : '{% url 'udata' %}',
+        data:{
+        'Acc1': Acc1,
+
+        'Text':Text.value,
+        'uname':uname,
+        'k':k,
+        'd':d,
+        },
+        success:
+        function(T1){
+        f1(T1,tid1);
+        //console.log(typeof(Acc1));
+        if(Acc1==false){
+       document.getElementById(bid).style.backgroundColor = "red";
+       }
+       else{
+       document.getElementById(bid).style.backgroundColor = "lightgreen";
+       }
+       Text.value = "";
+        }
+        ,
+        headers:{"X-CSRFToken":"{{ csrf_token}}"},
+        });}
+        });
+
+      }
+    </script>
+</head>
+<body>
+
+
+
+    <div id="wrapper">
+         <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="adjust-nav">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <img src="{% static 'images/miet.jpg' %}" style="width:90%;border-radius:7px;" />
+                    </a>
+                </div>
+
+                 <span class="logout-spn" >
+                  <a href="logout_admin" style="color:#fff;">LOGOUT</a>
+
+                </span>
+            </div>
+        </div>
+        <!-- /. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                <li >
+                        <a href="login_dashboard2" ><i class="fa fa-desktop "></i>Dashboard </a>
+                    </li>
+                    <li class="active-link">
+                        <a href="review_task"><i class="fa fa-table "></i>Review Task</a>
+                    </li>
+                    <li>
+                        <a href="About_us"><i class="fa fa-edit "></i>About Us</a>
+                    </li>
+                    <li>
+                        <a href="feedback"><i class="fa fa-edit "></i>Feedback</a>
+                    </li>
+                    <li >
+                        <a href="change_password"><i class="fa fa-key "></i>Change Password</a>
+                    </li>
+                </ul>
+                            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                     <h2>USER PANEL</h2>
+                    </div>
+                </div>
+                 <!-- /. ROW  -->
+                  <hr />
+
+                 <!-- /. ROW  -->
+        <table style="width: 100%;">
+        <colgroup>
+               <col span="1" style="width: 5%;">
+               <col span="1" style="width: 4%;">
+               <col span="1" style="width: 10%;">
+                <col span="1" style="width: 14%;">
+                <col span="1" style="width: 31%;">
+                <col span="1" style="width: 5%;">
+                <col span="1" style="width: 31%;">
+        </colgroup>
+
+        <tr>
+        <th style="text-align:center;">Sr.No</th>
+        <th style="text-align:center;">Given IDs</th>
+        <th style="text-align:center;">Files</th>
+        <th style="text-align:center;">Decision</th>
+        <th style="text-align:center;">Reason of Marking</th>
+        <th style="text-align:center;">Submit</th>
+        <th style="text-align:center;">Given Reason</th>
+        </tr>
+
+        {% for key in lt %}
+        <tr>
+            <td id="{{lt.number|add:'-1'|mul:10|add:forloop.counter}}" style="text-align:center;">{{lt.number|add:'-1'|mul:10|add:forloop.counter}}</td>
+            <td style="text-align:center;">{{key.0}}</td>
+            <!--td id="{{forloop.counter|add:2}}"><script>myfunc1("{{udict2|safe}}",'{{key}}','{{forloop.counter|add:2}}')</script></td-->
+            {% for key1,value1 in udict2.items %}
+            {% if key1 == key.0 %}
+            <td><a href="{{value1}}" id="{{lt.number|add:5|mul:10|add:forloop.parentloop.counter}}" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/PDF_file_icon.svg/400px-PDF_file_icon.svg.png" alt="File unavailable" style="height:10rem;"></a></td>
+            {% endif %}
+            {% endfor %}
+            <td style="text-align:center; font-weight:bold;"><input  type="radio" id="{{lt.number|add:'30'|mul:10|add:forloop.counter}}" name="{{lt.number|add:'-1'|mul:10|add:forloop.counter}}" value="1">
+            <label  style="font-weight:bold;font-size:100%;" for="{{lt.number|add:'30'|mul:10|add:forloop.counter}}">Accept</label><br>
+            <input type="radio" id="{{lt.number|add:'40'|mul:10|add:forloop.counter}}" name="{{lt.number|add:'-1'|mul:10|add:forloop.counter}}" value="0">
+            <label style="font-weight:bold;font-size:100%;" for="{{lt.number|add:'40'|mul:10|add:forloop.counter}}">Reject</label><br>
+            </td>
+            <td><textarea id="{{lt.number|add:20|mul:10|add:forloop.counter}}" style="border:3px solid black; height:10rem; width:100%;" placeholder="Assigned Date:     {{key.1}}"></textarea></td>
+            <td style="text-align:center;"><button style="border:3px solid black; text-align:center;padding:10px;font weight:bold;font-size:20px;border-radius:10px;" id="{{lt.number|add:'23'|mul:10|add:forloop.counter}}" onclick="Assign('{{lt.number|add:'30'|mul:10|add:forloop.counter}}','{{lt.number|add:20|mul:10|add:forloop.counter}}','{{request.user}}','{{key.0}}','{{lt.number|add:'21'|mul:10|add:forloop.counter}}','{{lt.number|add:'23'|mul:10|add:forloop.counter}}','{{lt.number|add:5|mul:10|add:forloop.counter}}')">Review</button></td>
+            {% with x=key.0 %}
+
+            <td><textarea style="border:3px solid black;height:10rem; width:100%;" id="{{lt.number|add:'21'|mul:10|add:forloop.counter}}" readonly> </textarea> <script>value('{{x}}','{{lt.number|add:'21'|mul:10|add:forloop.counter}}','{{lt.number|add:'30'|mul:10|add:forloop.counter}}','{{lt.number|add:'40'|mul:10|add:forloop.counter}}','{{lt.number|add:'23'|mul:10|add:forloop.counter}}')</script></td>
+            {% endwith %}
+        </tr>
+
+        {% endfor %}
+        </table>
+                <center>
+                    <div class="pagination">
+            {% if lt.has_previous %}
+            <a href="?page=1"><<</a>
+            <a href="?page={{lt.previous_page_number}}"><</a>
+            {% endif %}
+            {% for num in lt.paginator.page_range %}
+                {% if lt.number == num %}
+                    <a><strong>{{ num }}</strong></a>
+                {% elif num > lt.number|add:'-2' and num < lt.number|add:'2' %}
+            <a>{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+            {% if lt.has_next %}
+                <a href="?page={{ lt.next_page_number }}">></a>
+                <a href="?page={{ lt.paginator.num_pages }}">>></a>
+            {% endif %}
+
+        </div>
+                </center>
+
+    </div>
+             <!-- /. PAGE INNER  -->
+            </div>
+         <!-- /. PAGE WRAPPER  -->
+        </div>
+
+     <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+      <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+      <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+
+</body>
+</html>

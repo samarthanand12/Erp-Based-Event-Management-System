@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    {% load static %}
+      <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
+    <title>Simple Responsive Admin</title>
+	<!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" />
+     <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'assets/css/font-awesome.css' %}" rel="stylesheet" />
+        <!-- CUSTOM STYLES-->
+    <link href="{% static 'assets/css/custom.css' %}" rel="stylesheet" />
+     <!-- GOOGLE FONTS-->
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+.login-page {
+  width: 90%;
+  height:100%;
+  padding: 8% 0 0;
+  margin: auto;
+}
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.form button:hover,.form button:active,.form button:focus {
+  background: #43A047;
+}
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+.form .message a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+.form .register-form {
+  display: none;
+}
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.container:before, .container:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.container .info {
+  margin: 50px auto;
+  text-align: center;
+}
+.container .info h1 {
+  margin: 0 0 15px;
+  padding: 0;
+  font-size: 36px;
+  font-weight: 300;
+  color: #1a1a1a;
+}
+.container .info span {
+  color: #4d4d4d;
+  font-size: 12px;
+}
+.container .info span a {
+  color: #000000;
+  text-decoration: none;
+}
+.container .info span .fa {
+  color: #EF3B3A;
+}
+body {
+
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+    </style>
+
+
+</head>
+<body>
+
+
+
+    <div id="wrapper">
+         <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="adjust-nav">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <img src="{% static 'assets/img/logo.png' %}" />
+                    </a>
+                </div>
+
+                 <span class="logout-spn" >
+                  <a href="logout_admin" style="color:#fff;">LOGOUT</a>
+
+                </span>
+            </div>
+        </div>
+        <!-- /. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    {% if request.user.is_staff %}
+                    <li>
+                        <a href="login_dashboard2" ><i class="fa fa-desktop "></i>Dashboard </a>
+                    </li>
+
+
+                    <li >
+                        <a href="user_registration"><i class="fa fa-table "></i>Register Users</a>
+                    </li>
+                    <li >
+                        <a href="assign_task"><i class="fa fa-table "></i>Assign Task</a>
+                    </li>
+                    <li>
+                        <a href="check_status"><i class="fa fa-bar-chart-o "></i>Check Status</a>
+                    </li>
+                    <li >
+                        <a href="see_user"><i class="fa fa-bar-chart-o"></i>See Users</a>
+                    </li>
+                    <li>
+                        <a href="show_id"><i class="fa fa-bar-chart-o"></i>Show ID-Cards</a>
+                    </li>
+
+                    <li>
+                        <a href="About_us_admin"><i class="fa fa-edit "></i>About Us</a>
+                    </li>
+                    <li class="active-link">
+                        <a href="change_password"><i class="fa fa-key "></i>Reset Passkey</a>
+                    </li>
+                    {% else %}
+                    <li >
+                        <a href="login_dashboard2" ><i class="fa fa-desktop "></i>Dashboard </a>
+                    </li>
+                    <li >
+                        <a href="review_task"><i class="fa fa-table "></i>Review Task</a>
+                    </li>
+                    <li>
+                        <a href="About_us"><i class="fa fa-edit "></i>About Us</a>
+                    </li>
+                    <li class="active-link">
+                        <a href="change_password"><i class="fa fa-key "></i>Reset Passkey</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+
+        <div id="page-wrapper" >
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                     <h2>Reset Passkey</h2>
+                    </div>
+                </div>
+                 <!-- /. ROW  -->
+                  <hr />
+{% for message in messages  %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible show" role="alert">
+            <strong>Message : </strong>Hello {{request.user}} {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+                <div class="login-page">
+  <div class="form" >
+
+    <!--form class="login-form" action="update_password" method="POST">
+        {% csrf_token %}
+      <input type="text" name="password1" placeholder="New Password"/>
+      <input type="text" name="password2" placeholder="Confirm Password"/>
+      <button>Reset Passkey</button>
+
+    </form-->
+
+    <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" class="login-form">
+
+<input type=hidden name="oid" value="00D5g000005FkMI">
+<input type=hidden name="retURL" value="http://udyat.pythonanywhere.com/">
+
+<!--  ----------------------------------------------------------------------  -->
+<!--  NOTE: These fields are optional debugging elements. Please uncomment    -->
+<!--  these lines if you wish to test in debug mode.                          -->
+<!--  <input type="hidden" name="debug" value=1>                              -->
+<!--  <input type="hidden" name="debugEmail" value="erpcse22@gmail.com">      -->
+<!--  ----------------------------------------------------------------------  -->
+
+<label for="first_name">First Name</label><input  id="first_name" maxlength="40" name="first_name" size="20" type="text" /><br>
+
+<label for="last_name">Last Name</label><input  id="last_name" maxlength="80" name="last_name" size="20" type="text" /><br>
+
+<label for="email">Email</label><input  id="email" maxlength="80" name="email" size="20" type="text" /><br>
+
+<label for="title">Title</label><input  id="title" maxlength="40" name="title" size="20" type="text" /><br>
+
+<label for="description">Query</label><textarea name="description"></textarea><br>
+
+<input type="submit" name="submit">
+
+</form>
+
+  </div>
+</div>
+
+                 <!-- /. ROW  -->
+    </div>
+             <!-- /. PAGE INNER  -->
+            </div>
+         <!-- /. PAGE WRAPPER  -->
+        </div>
+    <div class="footer">
+
+
+             <div class="row">
+                <div class="col-lg-12" >
+                    Copyright © 2021 <a href="http://mietcsi.tech" style="color:#fff;"  target="_blank">www.mietcsi.tech</a> All right reserved.
+                </div>
+        </div>
+        </div>
+
+
+     <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+      <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+      <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+    
+   
+</body>
+</html>

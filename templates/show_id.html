@@ -1,0 +1,200 @@
+{% load static %}
+{% load mathfilters %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Id Cards</title>
+	<!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" />
+     <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'assets/css/font-awesome.css' %}" rel="stylesheet" />
+        <!-- CUSTOM STYLES-->
+    <link href="{% static 'assets/css/custom.css' %}" rel="stylesheet" />
+     <!-- GOOGLE FONTS-->
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+<style>
+    table, th, td {
+    border: 5px solid black;
+    padding:15px;
+    font-weight:bold;
+    text-align:center;
+    font-size:16px;
+    border-collapse:collapse;
+    }
+    tr:hover {
+  background-color:#f5f5f5;
+}
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  border: 1px solid #ddd;
+  float: center;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-size: 22px;
+
+}
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;
+  border-radius: 5px;
+}
+
+
+</style>
+<body>
+
+
+
+    <div id="wrapper">
+         <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="adjust-nav">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <img src="{% static 'images/miet.jpg' %}" style="width:90%;border-radius:7px;"/>
+                    </a>
+                </div>
+
+                 <span class="logout-spn" >
+                  <a href="logout_admin" style="color:#fff;">LOGOUT</a>
+
+                </span>
+            </div>
+        </div>
+        <!-- /. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li>
+                        <a href="login_dashboard2" ><i class="fa fa-desktop "></i>Dashboard </a>
+                    </li>
+
+
+                    <li>
+                        <a href="user_registration"><i class="fa fa-table "></i>Register Users</a>
+                    </li>
+                    <li>
+                        <a href="assign_task"><i class="fa fa-table "></i>Assign Task</a>
+                    </li>
+
+
+                    <li>
+                        <a href="check_status"><i class="fa fa-bar-chart-o "></i>Check Status</a>
+                    </li>
+                    <li>
+                        <a href="see_user"><i class="fa fa-bar-chart-o"></i>See Users</a>
+                    </li>
+                    <li class="active-link">
+                        <a href="show_id"><i class="fa fa-bar-chart-o"></i>Show ID-Cards</a>
+                    </li>
+
+                    <li>
+                        <a href="About_us"><i class="fa fa-edit "></i>About Us</a>
+                    </li>
+                    <li>
+                        <a href="feedback"><i class="fa fa-edit "></i>Feedback</a>
+                    </li>
+                    <li>
+                        <a href="change_password"><i class="fa fa-key "></i>Reset Passkey</a>
+                    </li>
+                </ul>
+                            </div>
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                     <h2>TEAM'S ID-CARD</h2>
+                    </div>
+                </div>
+                 <!-- /. ROW  -->
+                  <hr />
+              <table style="width: 100%;">
+                <colgroup>
+                       <col span="1" style="width: 5%;">
+                       <col span="1" style="width: 10%;">
+                       <col span="1" style="width: 15%;">
+                        <col span="1" style="width: 15%;">
+                        <col span="1" style="width: 20%;">
+                        <col span="1" style="width: 15%;">
+                        <col span="1" style="width: 20%;">
+                </colgroup>
+                <tr>
+                <th style="text-align:center;">Sr.No</th>
+                <th style="text-align:center;">Team IDs</th>
+                <th style="text-align:center;">Id Cards</th>
+
+                </tr>
+                {% for k in l4 %}
+                <tr>
+                <td id="{{l4.number|add:'-1'|mul:10|add:forloop.counter}}" style="text-align:center;">{{l4.number|add:'-1'|mul:10|add:forloop.counter}}</td>
+                <td id="{{l4.number|add:2|mul:10|add:forloop.counter}}" style="text-align:center;">{{l4.number|add:'-1'|mul:10|add:forloop.counter}}</td>
+                    <td id="{{l4.number|add:3|mul:10|add:forloop.counter}}" style="text-align:center;"><a href="{{k}}" target="_blank"><img src="https://png.pngtree.com/png-vector/20190726/ourmid/pngtree-vector-identity-card-icon-png-image_1594614.jpg" alt="File unavailable" style="height:auto; width:25%; padding-left:2%;"></a></td>
+
+                </tr>
+                {% endfor %}
+            </table>
+                <center>
+                    <div class="pagination">
+            {% if l4.has_previous %}
+            <a href="?page=1"><<</a>
+            <a href="?page={{l4.previous_page_number}}"><</a>
+            {% endif %}
+            {% for num in l4.paginator.page_range %}
+                {% if l4.number == num %}
+                    <a><strong>{{ num }}</strong></a>
+                {% elif num > l4.number|add:'-2' and num < l4.number|add:'2' %}
+           <a>{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+            {% if l4.has_next %}
+                <a href="?page={{ l4.next_page_number }}">></a>
+                <a href="?page={{ l4.paginator.num_pages }}">>></a>
+            {% endif %}
+
+        </div>
+                </center>
+
+    </div>
+             <!-- /. PAGE INNER  -->
+            </div>
+         <!-- /. PAGE WRAPPER  -->
+        </div>
+
+    <div class="footer">
+
+
+             <div class="row">
+               <div class="col-lg-12" >
+                   Copyright © 2021 <a href="http://mietcsi.tech" style="color:#fff;"  target="_blank">www.mietcsi.tech</a> All right reserved.
+                </div>
+        </div>
+        </div>
+
+
+     <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+      <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+      <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+
+</body>
+</html>

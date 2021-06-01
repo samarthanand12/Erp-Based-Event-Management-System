@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    {% load static %}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
+
+    <title>Simple Responsive Admin</title>
+	<!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" />
+     <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'assets/css/font-awesome.min.css' %}" rel="stylesheet" />
+        <!-- CUSTOM STYLES-->
+    <link href="{% static 'assets/css/custom.css' %}" rel="stylesheet" />
+     <!-- GOOGLE FONTS-->
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+
+
+    <!-- Main CSS-->
+    <link href="{% static 'css/main1.css' %}" rel="stylesheet" media="all">
+</head>
+<body>
+
+    <div id="wrapper">
+         <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="adjust-nav">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <img src="{% static 'assets/img/logo.png' %}" />
+                    </a>
+                </div>
+              
+                 <span class="logout-spn" >
+                  <a href="logout_admin" style="color:#fff;">LOGOUT</a>
+
+                </span>
+            </div>
+        </div>
+        <!-- /. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    {% if request.user.is_staff %}
+                    <li>
+                        <a href="login_dashboard2" ><i class="fa fa-desktop "></i>Dashboard </a>
+                    </li>
+
+
+                    <li >
+                        <a href="user_registration"><i class="fa fa-table "></i>Register Users</a>
+                    </li>
+                    <li >
+                        <a href="assign_task"><i class="fa fa-table "></i>Assign Task</a>
+                    </li>
+                    <li>
+                        <a href="check_status"><i class="fa fa-bar-chart-o "></i>Check Status</a>
+                    </li>
+                    <li >
+                        <a href="see_user"><i class="fa fa-bar-chart-o"></i>See Users</a>
+                    </li>
+                    <li>
+                        <a href="show_id"><i class="fa fa-bar-chart-o"></i>Show ID-Cards</a>
+                    </li>
+
+                    <li>
+                        <a href="About_us"><i class="fa fa-edit "></i>About Us</a>
+                    </li>
+                    <li class="active-link">
+                        <a href="feedback"><i class="fa fa-edit "></i>Feedback</a>
+                    </li>
+                    <li>
+                        <a href="change_password"><i class="fa fa-key "></i>Reset Passkey</a>
+                    </li>
+                    {% else %}
+                    <li >
+                        <a href="login_dashboard2" ><i class="fa fa-desktop "></i>Dashboard </a>
+                    </li>
+                    <li >
+                        <a href="review_task"><i class="fa fa-table "></i>Review Task</a>
+                    </li>
+                    <li>
+                        <a href="About_us"><i class="fa fa-edit "></i>About Us</a>
+                    </li>
+                    <li class="active-link">
+                        <a href="feedback"><i class="fa fa-edit "></i>Feedback</a>
+                    </li>
+                    <li>
+                        <a href="change_password"><i class="fa fa-key "></i>Reset Passkey</a>
+                    </li>
+                    {% endif %}
+
+                </ul>
+                            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper"  >
+            <div id="page-inner" style="border: 10px groove #4272d7;">
+
+                <div class="row">
+                    <div class="col-md-12">
+					<center>
+					<br>
+                     <h2> Register User Here </h2>
+                    </center>
+                    </div>
+                </div>              
+                 <!-- /. ROW  -->
+                  <hr />
+          <br>
+        <div class="wrapper wrapper--w680" style="border: 10px double #4272d7;">
+            {% for message in messages  %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible show" role="alert">
+                        <strong>Message : </strong> {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                {% endfor %}
+            <div class="card card-4" style="background-color:#F0F0F0;">
+                <div class="card-body">
+                    <h2 class="title">User Query Form</h2>
+                    <!--form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" class="login-form">
+                    	<input type=hidden name="oid" value="00D5g000005FkMI">
+                        <input type=hidden name="retURL" value="http://udyat.pythonanywhere.com/">
+                        {% csrf_token %}
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label for="first_name">Name</label><input  id="first_name" maxlength="40" name="first_name" size="20" type="text" /><br>
+                                </div>
+                            </div>
+                            
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label for="email">Email</label><input  id="email" maxlength="80" name="email" size="20" type="email" /><br>
+                                </div>
+                            </div>
+                        </div>
+						<div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    ><label for="title">Title</label><input  id="title" maxlength="40" name="title" size="20" type="text" /><br>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label for="description">Query</label><textarea name="description"></textarea><br>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-t-15">
+                            <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
+                            <input type="submit" name="submit">
+                        </div>{{request.user}}
+                    </form-->
+                    <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" class="p-5 bg-light">
+                        <input type=hidden name="oid" value="00D5g000005FkMI">
+                        <input type=hidden name="retURL" value="http://127.0.0.1:8000/feedback">
+                        {% csrf_token %}
+                        <div class="form-group">
+                        <label for="first_name">Name *</label>
+                        <input type="text" class="form-control" id="first_name" maxlength="40" name="first_name" size="20">
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input class="form-control" id="email" maxlength="80" name="email" size="20" type="email">
+                  </div>
+                  <div class="form-group">
+                    <label for="title">Title *</label>
+                    <input class="form-control" id="title" maxlength="40" name="title" size="20" type="text" >
+                  </div>
+
+                  <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea id="message" cols="30" rows="10" class="form-control" name="description"></textarea>
+                  </div>
+                  {% if request.user.is_staff %}
+                        <input type=hidden id="00N5g00000DWMGb" maxlength="20" name="00N5g00000DWMGb" size="20" value="Admin">
+                  {% else %}
+                        <input type=hidden id="00N5g00000DWMGb" maxlength="20" name="00N5g00000DWMGb" size="20" value="User">
+                  {% endif %}
+                  <div class="form-group">
+                    <input type="submit" value="Submit" name="submit" class="btn btn-primary">
+                  </div>
+
+                </form>
+                </div>
+            </div>
+        </div>
+                 <!-- /. ROW  -->           
+    </div>
+             <!-- /. PAGE INNER  -->
+            </div>
+         <!-- /. PAGE WRAPPER  -->
+        </div>
+    <div class="footer">
+      
+    
+             <div class="row">
+                <div class="col-lg-12" >
+                    &copy;2021 mietcsi.com
+                </div>
+        </div>
+        </div>
+          
+
+     <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+      <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+      <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+    <!-- Main JS-->
+    <script src="{% static 'js/global.js' %}"></script>
+    
+
+</body>
+</html>

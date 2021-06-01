@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    {% load static %}
+      <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us</title>
+	<!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" />
+     <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'assets/css/font-awesome.css' %}" rel="stylesheet" />
+        <!-- CUSTOM STYLES-->
+    <link href="{% static 'assets/css/custom.css' %}" rel="stylesheet" />
+     <!-- GOOGLE FONTS-->
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+   <link href="{% static 'css/styleish.css' %}" rel="stylesheet" media="all"/>
+	<!-- Bootstrap ->
+	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"/-->
+	<!-- Slick slider -->
+
+    <link href="{% static 'css/travel1.css' %}" rel="stylesheet"/>
+<style>
+    h5,p{
+		font-family: algerian;
+		color:yellow;
+		;
+	}
+	h1{
+		font-family: algerian;
+		color:black;
+		;
+	}
+</style>
+</head>
+<body>
+
+
+
+    <div id="wrapper">
+         <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="adjust-nav">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <img src="{% static 'images/miet.jpg' %}" style="width:90%;border-radius:7px;"/>
+                    </a>
+                </div>
+
+                 <span class="logout-spn" >
+                  <a href="logout_admin" style="color:#fff;">LOGOUT</a>
+
+                </span>
+            </div>
+        </div>
+        <!-- /. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    {% if request.user.is_staff %}
+                    <li>
+                        <a href="login_dashboard2" ><i class="fa fa-desktop "></i>Dashboard </a>
+                    </li>
+
+
+                    <li >
+                        <a href="user_registration"><i class="fa fa-table "></i>Register Users</a>
+                    </li>
+                    <li >
+                        <a href="assign_task"><i class="fa fa-table "></i>Assign Task</a>
+                    </li>
+                    <li>
+                        <a href="check_status"><i class="fa fa-bar-chart-o "></i>Check Status</a>
+                    </li>
+                    <li >
+                        <a href="see_user"><i class="fa fa-bar-chart-o"></i>See Users</a>
+                    </li>
+                    <li>
+                        <a href="show_id"><i class="fa fa-bar-chart-o"></i>Show ID-Cards</a>
+                    </li>
+
+                    <li class="active-link">
+                        <a href="About_us"><i class="fa fa-edit "></i>About Us</a>
+                    </li>
+                    <li>
+                        <a href="feedback"><i class="fa fa-edit "></i>Feedback</a>
+                    </li>
+                    <li>
+                        <a href="change_password"><i class="fa fa-key "></i>Reset Passkey</a>
+                    </li>
+                    {% else %}
+                    <li >
+                        <a href="login_dashboard2" ><i class="fa fa-desktop "></i>Dashboard </a>
+                    </li>
+                    <li >
+                        <a href="review_task"><i class="fa fa-table "></i>Review Task</a>
+                    </li>
+                    <li class="active-link">
+                        <a href="About_us"><i class="fa fa-edit "></i>About Us</a>
+                    </li>
+                    <li>
+                        <a href="feedback"><i class="fa fa-edit "></i>Feedback</a>
+                    </li>
+                    <li>
+                        <a href="change_password"><i class="fa fa-key "></i>Reset Passkey</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                     <h2>About Us </h2>
+                    </div>
+                </div>
+                 <!-- /. ROW  -->
+                  <hr />
+                <section id="mu-institute">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12" style="top:0px;">
+
+							<!-- Start Feature Content -->
+
+
+                    <div class="mu-about-left" style="width:35%;float:left;margin-top:2%;padding-right:2%;">
+                        <img src="static\images\10.jpg " style="height:44rem" alt="Miet">
+                    </div>
+
+
+									<div class="mu-about-right" style="width:40%;float:right;margin-right:24%;">
+										<h1 style="font-family: 'Merriweather' , serif;color: rgb(51, 2, 2)">About the
+											Institute</h1>
+
+										<p style="text-align:justify; word-wrap: break-word;font-family: 'Merriweather' , serif;color: rgb(51, 2, 2); font-size: 1.8rem;">
+											MIET, located in the National Capital Region, is one of the oldest
+											self-financed Engineering Institutions in Uttar Pradesh and also one of the
+											best Skill Enhancement Training centers. MIET is declared a STAR PERFORMER
+											(an Academic Excellence Award by UPTU). Like a true leader, it has taken
+											several initiatives in the field of technical education that are being
+											followed by other Institutions across the state now. MIET has an intensive
+											academic environment aimed at bringing out the best out of the students. It
+											lays claim to the finest faculty in the region, offers the best laboratory
+											infrastructure, excellent hostels, mess facilities and promotes several
+											extra- curricular activities. </p>
+									</div>
+							<!-- End Feature Content -->
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+                <section id="mu-institute1">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3" >
+
+									<div class="mu-about-left" style="width:150%;float:left;margin-top:21%;padding-right:2%;">
+										<img class="" src="static\images\Udyat_logo.png " style="height:42rem" alt="Miet">
+									</div>
+								</div>
+								<div class="col-md-6" style="width:40%;float:right;margin-right:24%;margin-top:3.5%;">
+
+										<h1 style="font-family: 'Merriweather' , serif;color: rgb(51, 2, 2);font-size: 3rem;">About Our
+											Technical Committee</h1>
+
+										<p style="text-align:justify; word-wrap: break-word;font-family: 'Merriweather' , serif;color: rgb(51, 2, 2); font-size: 1.8rem;">
+											We at Udyat, are a team of enthusiastic, highly dynamic and motivated young budding engineers, who are dedicated to make every student an expert.
+
+We are a collective group formed out of the senior students of MIET(CSE). With an enlightened mind and the will to learn, teach and share our knowledge with others, we people at Udyat give our present constantly to make a brighter future for ourselves and our fellow Means.
+
+Udyat is a team that specializes in the computer science and information technology domain. Thus, we people are the computer science society of Miet. We specializes in almost all domains of the field including python, Salesforce, Java, machine learning, android, web development, etc.
+</p>
+
+								</div>
+							</div>
+							<!-- End Feature Content -->
+
+
+			</div>
+		</section>
+                <section class="features" style="background-color:white;">
+<h1>Developed By-:</h1>
+<div class="gallery" style="margin-left:0.5%; padding:0% 0% 0% 0%;">
+<div class="smart" style="width:28%;height:auto;">
+<div class="box">
+<div class="imgbox" style="height:300px;">
+<img src="static\images\sarthak.jpeg" style="height:100%; width:100%;">
+</div>
+
+</div>
+<div>
+	<center>
+<h5>Sarthak Aggarwal</h5>
+<p>FrontEnd Developer</p>
+</center>
+</div>
+</div>
+<div class="smart"  style="width:30%;height:auto;margin-left:30px; margin-right:30px;">
+<div class="box">
+<div class="imgbox" style="height:300px;">
+<img src="static\images\samarth.png" style="height:100%; width:100%;">
+</div>
+
+</div>
+<div>
+	<center>
+<h5>Samarth Anand</h5>
+<p>Full Stack Developer</p>
+</center>
+</div>
+</div>
+<div class="smart" style="width:30%;height:auto;">
+<div class="box">
+<div class="imgbox" style="height:300px; ">
+<img src="static\images\sam.jpeg" style="height:100%; width:100%;">
+</div>
+
+</div>
+<div>
+	<center>
+<h5>Samarpan Jain</h5>
+<p>Full Stack Developer</p>
+</center>
+</div>
+</div>
+
+<!------------------------------------------------------------------->
+</div>
+
+</section>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+
+
+             <div class="row">
+                <div class="col-lg-12" >
+                   Copyright © 2021 <a href="http://mietcsi.tech" style="color:#fff;"  target="_blank">www.mietcsi.tech</a> All right reserved.
+                </div>
+        </div>
+        </div>
+
+
+     <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'assets/js/jquery-1.10.2.js' %}"></script>
+      <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+      <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+
+</body>
+</html>
