@@ -18,8 +18,8 @@ Our Web App comprises of two parts –
 
 
 ## Body:
-This system consists of Admin Panel and User Panel.
-Admin Panel: 
+This system consists of Admin Panel and User Panel.<br>
+<h4>Admin Panel:</h4><br>
 Let us discuss about the Admin Panel. Admin Panel has more functionality than User Panel. The overall idea is to take the input from participants through Google form and reflect it to the Admin Panel of the ERP System. Now admin can see the submissions on his screen only after login using his/her Username and Password. Admin has the right to register new evaluators and assign them their respective login IDs and password and assign these submissions to different users (or evaluators). When new users registered by the admin, then the evaluator will get to know their ID and password via mail. Admin has rights to change the password of any user at any time. Besides this, the admin will see the feedback of every evaluation who has the status i.e., whether the submission is accepted or rejected by the evaluator and the reason of acceptance and reason of rejection will also be shown in the system. Only the admin can send mail to the participants whether their submitted idea is accepted or rejected. Two different templates are designed by the developers so that when the admin wants to send mail of acceptance, he selects it by clicking on the button “Send Acceptance Mail” or if the admin wants to send mail of rejection, he has to clicks on the button “Send Rejection Mail” and the mail will be sent to the participant and the participant will be notified immediately. If the admin finds anything wrong with the evaluator or evaluator doesn’t want to evaluate the submitted ideas anymore then the admin has the right to withdraw the evaluation rights from the users (or evaluators). Admin can see all the users under the See Users tab and can check the name as well as the id card of the evaluator (to verify user identity). All these functions which can be done by the admin will be shown on the admin dashboard which will be displayed after admin login.
 Flowchart to represent the Admin Panel:
 
@@ -45,7 +45,7 @@ Flowchart to represent the Admin Panel:
 
 
  
-## User Panel: 
+<h4>User Panel:</h4><br>
 User Panel is also known as Evaluator Panel and it is the most important part of this application. This panel is more restrictive and gives fewer rights are provided to the user. For login on the application, the user has to check his/her mailbox for getting his Username and Password and in that mail, he will also get a link to this application which is accessed via the internet easily. When a User login with their respective Username and Password then he/she see the User Dashboard and on which he sees what he can do i.e., what are the rights given to him. Evaluator can open the submitted idea without knowing from whom it belongs, so that unbiased evaluation can be done. After inspecting the idea user will accept or reject submission according to the appropriateness and the rules on which the ideas should be evaluated and give the reason for accepting it and rejecting it and these both things are reflected in Admin Panel. If the evaluator forgets his/her password he can click on the option “Forgot Password” from the login dashboard and can reset the password and a mail will be sent through which he can reset. In this way, user can evaluate the ideas smoothly.
 In this way, ideas submitted by the participants are evaluated smoothly and fast. This process is also represented in the form of figures below: Please refers to the different figures of our application.
 Flowchart to represent User Panel:
