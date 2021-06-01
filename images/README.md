@@ -1,1 +1,1 @@
-# sample Images
+# Sample Images
