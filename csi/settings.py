@@ -46,8 +46,8 @@ INSTALLED_APPS = [
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_PORT = 25
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'udyat@miet.ac.in'
-EMAIL_HOST_PASSWORD = 'miet@123'
+EMAIL_HOST_USER = 'email here'
+EMAIL_HOST_PASSWORD = 'password of email here'
 EMAIL_USE_TLS = True
 
 MIDDLEWARE = [
